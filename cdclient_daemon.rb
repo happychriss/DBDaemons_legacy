@@ -58,13 +58,13 @@ def run_drb_daemons(options)
   browser = DNSSD::Service.new
   web_server_uri=''
   drb_uri="druby://#{Socket.gethostname}:#{options[:port]}" ## Create uri of drb-service that is the current host and the port from the config file
-  avahi_name="Cleandesk_#{options[:avahi_prefix]}" ## Create Avahi Service Name, this is the avahi service the daemon is looking for
+  avahi_name="Docbox_#{options[:avahi_prefix]}" ## Create Avahi Service Name, this is the avahi service the daemon is looking for
   service_obj=nil
   connected=false
 
   puts "****** Waiting for Service request avahi: #{avahi_name}"
 
-  browser.browse '_cds._tcp' do |reply|
+  browser.browse '_docbox._tcp' do |reply|
 
     if reply.name==avahi_name
 

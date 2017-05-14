@@ -5,4 +5,5 @@ gem 'activesupport'
 gem 'daemons'
 gem 'dnssd' , '~> 2.0.1'
 gem 'sunxi_gpio','~> 0.0.4', :git => 'git://github.com/happychriss/sunxi-gpio-gem.git'     # my personal sunxi-gem with SERVER
+gem 'rest-client'	
 ## this seems not really to work, try instead: gem specific_install https://github.com/happychriss/sunxi-gpio-gem.git
