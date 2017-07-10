@@ -89,11 +89,11 @@ def run_drb_daemons(options)
               ### Start DRB Service
               puts "*** Start DRB  for: #{web_server_uri} via DRB: #{drb_uri} and  and subnet: #{options[:subnet]} ***"
 
-              acl = ACL.new(%W(deny all
-                           allow #{options[:subnet]}.*
-                           allow localhost))
+ #             acl = ACL.new(%W(deny all
+#                           allow #{options[:subnet]}.*
+ #                          allow localhost))
 
-              DRb.install_acl(acl)
+  #            DRb.install_acl(acl)
               DRb.start_service(drb_uri, service_obj)
               DRb.uri
 
