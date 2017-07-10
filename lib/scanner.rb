@@ -101,7 +101,7 @@ class Scanner
 
                 puts res1
 #                raise "Error unpaper - #{res1}" unless File.exist?("#{f}.unpaper.ppm")
-                raise "Error unpaper - #{res1}" unless res1[0..10] == "unpaper 6.1"
+#                raise "Error unpaper - #{res1}" unless res1[0..10] == "unpaper 6.1"
 
             		puts "Start convert"
                 res2 = %x[convert '#{f}.unpaper.ppm' '#{f}.converted.jpg']

@@ -191,11 +191,15 @@ class Converter
 
         ############### Create Preview Pictures of uploaded file
 
-        puts "------------ Start conversion for pdf or jpg: Source: '#{fpath}' ----------"
+        puts "------------ V2 Start conversion for pdf or jpg: Source: '#{fpath}' ----------"
 
         ## Tika ############################### http://tika.apache.org/
 
-        command="#{tika_path} -h '#{fpath}' >> #{fpath+'.conv.html'}"
+        command="java -jar #{tika_path} -h '#{fpath}' >> #{fpath+'.conv.html'}"
+
+	puts "Starting with command:"
+	puts command
+
         res=%x[#{command}]
         puts "ok, Result: #{res}"
 
@@ -211,8 +215,8 @@ class Converter
 
         ################ Extract Test from uploaded file
 
-        puts "Start tika to extract text..."
-        res=%x[#{tika_path} -t '#{fpath}' >> #{fpath+'.conv.txt'}]
+        puts "Start tika to extract text V2..."
+        res=%x[java -jar #{tika_path} -t '#{fpath}' >> #{fpath+'.conv.txt'}]
 
         result_txt = read_txt_from_conv_txt(fpath)
         converter_upload_pdf(result_txt, File.open(fpath), page_id)
