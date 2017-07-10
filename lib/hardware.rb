@@ -1,5 +1,5 @@
 require_relative '../lib/support'
-require 'sunxi_gpio/pin'
+# require 'sunxi_gpio/pin'
 
 
 class Hardware

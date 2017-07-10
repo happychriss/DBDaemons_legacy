@@ -32,7 +32,7 @@ def connect_to_webserver(drb_uri, options, web_server_uri)
 
       loop do
         begin
-          puts "#{Time.now} *** try connecting to : #{drb_uri}"
+          puts "#{Time.now} *** try connecting to : #{web_server_uri}"
           sleep(5+rand*2)
           RestClient.post web_server_uri+'/connectors', {:connector => {:service => options[:service], :uri => drb_uri, :uid => options[:uid], :prio => options[:prio]}}, :content_type => :json, :accept => :json
           puts "*** connection succesfully established"

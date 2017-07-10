@@ -1,8 +1,18 @@
-This repository belongs to: https://github.com/happychriss/CDServer
+DocumentBox DBDaemon
 ===============================================
 
-The CDDaemon is used together with CDServer.
-CDServer is running on Cubietruck or any NAS running the main application with RoR.
-CDDaemon can run on any Linux PC and offices services for the CDServer (e.g. OCR and image processing) to support a NAS
-not having enough computing power.
+This repository belongs to the DocumentBox Project.
+
+Check out:
+
+https://github.com/happychriss/DocumentBox-Server
+
+
+DocumentBox is a OpenSource „home use“ Document Management system that helps you to
+easy scan, file and find your documents. Its running on a mini computer
+as small as a Raspberry Pi 3. A scanner connected to the mini-computers
+allows you to quickly scan your documents and file them directly from
+your mobile phone or tablet.
+
+
 
