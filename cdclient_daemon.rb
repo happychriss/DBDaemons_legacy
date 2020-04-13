@@ -64,7 +64,7 @@ def run_drb_daemons(options)
 
   puts "****** Waiting for Service request avahi: #{avahi_name}"
 
-  browser.browse '_docbox._tcp' do |reply|
+  browser.browse "_#{options[:avahi_prefix]}_docbox._tcp" do |reply|
 
     if reply.name==avahi_name
 
@@ -169,6 +169,7 @@ OptionParser.new do |opts|
   ### option for gpioserver only, used by hardwares system to connect to gpio_server
   opts.on('-g', '--gpio_port PORT', 'Port of the gpio_server to connect to') { |v| options[:gpio_port] = v }
   opts.on('-h', '--gpio_server SERVER', 'Server of the gpio_server to connect to') { |v| options[:gpio_server] = v }
+
 
 end.parse!
 
