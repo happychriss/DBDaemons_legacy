@@ -20,7 +20,7 @@ TEST=true
 def terminate(options, web_server_uri)
   ### if terminated, say goodby to the server
   puts "Stop DRB service for: #{options[:service]}"
-  RestClient.delete web_server_uri+"/connectors/#{options[:uid]}", {:content_type => :json, :accept => :json}
+  RestClient.delete web_server_uri+"/connectors/#{options[:uid]}"
   sleep(1)
   exit
 end
@@ -34,7 +34,7 @@ def connect_to_webserver(drb_uri, options, web_server_uri)
         begin
           puts "#{Time.now} *** try connecting to : #{web_server_uri}"
           sleep(5+rand*2)
-          RestClient.post web_server_uri+'/connectors', {:connector => {:service => options[:service], :uri => drb_uri, :uid => options[:uid], :prio => options[:prio]}}, :content_type => :json, :accept => :json
+          RestClient.post web_server_uri+'/connectors', {:connector => {:service => options[:service], :uri => drb_uri, :uid => options[:uid], :prio => options[:prio]}}
           puts "*** connection succesfully established"
       $stdout.flush 
           return true

@@ -39,7 +39,7 @@ class Scanner
     @result = '-'
     @doc_name_index = @doc_name_index.next
     scan_tmp_file = @doc_name_prefix + "_#{@doc_name_index}_%03d.copy.ppm"
-    mode = 'Lineart'
+    mode = 'Gray'
     resolution = '300'
     source = "'ADF Duplex'"
     scan_command = ""
@@ -155,6 +155,7 @@ class Scanner
 
               puts "Start print"
               job = @printer.print_file("#{f}.unpaper_copy.pdf")
+              sleep 2
               puts "Job Status:#{job.status}"
               job_list.push(job)
 
@@ -251,9 +252,9 @@ class Scanner
 
               if @unpaper_speed then
                 ### quick version for unpaper, not using --no-mask-scan
-                res1 = %x[unpaper -v --overwrite  --mask-scan-size 120 --sheet-size a4 --no-grayfilter --no-mask-scan --no-blackfilter  --pre-border 0,200,0,0 '#{f_scanned_ppm}' '#{f}.unpaper.ppm']
+                res1 = %x[unpaper -v --overwrite  --post-size a4 --sheet-size a4 --no-grayfilter --no-mask-scan --no-blackfilter  --pre-border 0,120,0,0 '#{f_scanned_ppm}' '#{f}.unpaper.ppm']
               else
-                res1 = %x[unpaper -v --overwrite  --mask-scan-size 120 --post-size a4 --sheet-size a4 --no-grayfilter --no-blackfilter  --pre-border 0,200,0,0 '#{f_scanned_ppm}' '#{f}.unpaper.ppm']
+                res1 = %x[unpaper -v --overwrite  --post-size a4 --sheet-size a4 --no-grayfilter --no-blackfilter  --pre-border 0,120,0,0 '#{f_scanned_ppm}' '#{f}.unpaper.ppm']
               end
 
               puts res1
@@ -275,8 +276,8 @@ class Scanner
 
               RestClient.post @web_server_uri + '/create_from_scanner_jpg', {
                   :upload_file => File.new(f + ".converted.jpg", 'rb'),
-                  :small_upload_file => File.new(f + ".converted_small.jpg", 'rb')},
-                              :content_type => :json, :accept => :json
+                  :small_upload_file => File.new(f + ".converted_small.jpg", 'rb')}
+
 
               res4 = FileUtils.rm "#{f}.unpaper.ppm"
 
@@ -304,7 +305,7 @@ class Scanner
 
     @doc_name_index = @doc_name_index.next
     scan_tmp_file = @doc_name_prefix + "_#{@doc_name_index}_%03d.scanned.ppm"
-    mode = 'Lineart' if not color
+    mode = 'Gray' if not color
     mode = 'Color' if color
     resolution = '300'
 #    resolution='600' if @resolution_high.checked?
@@ -321,7 +322,6 @@ class Scanner
      "--mode=" + mode,
      "--contrast=" + "70",
      "--brightness=" + "40",
-     "--format=" + "ppm",
      "--resolution=" + resolution,
      "--format=" + "ppm",
      "--batch=" + scan_tmp_file,
@@ -336,7 +336,7 @@ class Scanner
 
   def scanner_status_update(message, scan_complete = FALSE)
     puts "DRBSCANNER: #{message}"
-    RestClient.post @web_server_uri + '/scan_status', {:message => message, :scan_complete => scan_complete}, :content_type => :json, :accept => :json
+    RestClient.post @web_server_uri + '/scan_status', {:message => message, :scan_complete => scan_complete}
   end
 
 
