@@ -1,11 +1,7 @@
-DocumentBox DBDaemon (RPI 4 & Touchswitch)
-===============================================
+LEGACY VERSION of the DocBox Daemon using Rails 3, not maintained
+============================
 
-This repository belongs to the DocumentBox Project.
-
-Check out:
-
-https://github.com/happychriss/DocumentBox-Server
+New Version: https://github.com/happychriss/DocumentBox-Server
 
 
 DocumentBox is a OpenSource „home use“ Document Management system that helps you to
